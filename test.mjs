@@ -1,6 +1,6 @@
-import fs from 'fs';
-import https from 'https';
-import fetch from 'node-fetch';
+import fs from "fs";
+import https from "https";
+import fetch from "node-fetch";
 
 main().then();
 
@@ -8,7 +8,9 @@ async function main() {
   configureGlobalCert();
   const authUrl =
     process.env["apps.publogin.ws"] +
-    "/loginx509.php?referer-0=https://www.bystrobank.ru/businesscabinet&required-0=80&realm-0=bbx509";
+    "/loginx509.php?referer-0=" +
+    testUrl +
+    "&required-0=80&realm-0=bbx509";
   const testUrl = process.env["apps.cabinet.ws"] + "/cabinet.php";
 
   const options = {
@@ -16,10 +18,10 @@ async function main() {
   };
   const authRes = await fetch(authUrl, options);
   await checkResponse(authRes);
-  
+
   const testRes = await fetch(testUrl, options);
   await checkResponse(testRes);
-  console.log (await testRes.text());
+  console.log(await testRes.text());
 }
 
 /**
