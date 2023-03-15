@@ -1,0 +1,16 @@
+{
+  "name": "testfetch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -r dotenv/config test.mjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+		"dotenv": "^16.0.3",
+		"node-fetch": "^3.3.1"
+	}
+}
