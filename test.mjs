@@ -37,7 +37,7 @@ function parseCookies(response) {
       const cookiePart = parts[0];
       return cookiePart;
     })
-    .join(";");
+    .join("; ");
 }
 
 /**
