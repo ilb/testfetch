@@ -6,12 +6,12 @@ main().then();
 
 async function main() {
   configureGlobalCert();
+  const testUrl = process.env["apps.cabinet.ws"] + "/cabinet.php";
   const authUrl =
     process.env["apps.publogin.ws"] +
     "/loginx509.php?referer-0=" +
     testUrl +
     "&required-0=80&realm-0=bbx509";
-  const testUrl = process.env["apps.cabinet.ws"] + "/cabinet.php";
 
   const options = {
     credentials: "include",
