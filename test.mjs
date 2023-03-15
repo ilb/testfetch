@@ -17,9 +17,11 @@ async function main() {
     credentials: "include",
   };
   const authRes = await fetch(authUrl, options);
+  console.log('authRes.headers', authRes.headers);
   await checkResponse(authRes);
 
   const testRes = await fetch(testUrl, options);
+  console.log('testRes.headers', testRes.headers);
   await checkResponse(testRes);
   console.log(await testRes.text());
 }
