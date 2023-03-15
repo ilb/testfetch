@@ -13,17 +13,31 @@ async function main() {
     testUrl +
     "&required-0=80&realm-0=bbx509";
 
-  const options = {
-    credentials: "include",
-  };
-  const authRes = await fetch(authUrl, options);
-  console.log('authRes.headers', authRes.headers);
+  const authRes = await fetch(authUrl);
+  console.log("authRes.headers", authRes.headers);
   await checkResponse(authRes);
+  const cookie = parseCookies(authRes);
 
+  const options = {
+    headers: {
+      cookie,
+    }
+  };
   const testRes = await fetch(testUrl, options);
-  console.log('testRes.headers', testRes.headers);
+  console.log("testRes.headers", testRes.headers);
   await checkResponse(testRes);
   console.log(await testRes.text());
+}
+
+function parseCookies(response) {
+  const raw = response.headers.raw()["set-cookie"];
+  return raw
+    .map((entry) => {
+      const parts = entry.split(";");
+      const cookiePart = parts[0];
+      return cookiePart;
+    })
+    .join(";");
 }
 
 /**
